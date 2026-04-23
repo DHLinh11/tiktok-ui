@@ -4,6 +4,7 @@
 :root {
     --primary: #fe2c55;
     --black: #000;
+    --white: #fff;
     --text-color: #333;
     // layout
     --default-header-layout-height: 60px;
@@ -32,4 +33,10 @@ input,
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
 }
