@@ -1,10 +1,11 @@
 .wrapper {
     display: flex;
     align-items: center;
-    cursor: pointer;
     padding: 6px 16px;
+    cursor: pointer;
+
     &:hover {
-        background-color: rgb(22, 24, 35, 0.03);
+        background-color: rgba(24, 27, 42, 0.037);
     }
 }
 .avatar {
@@ -19,7 +20,7 @@
 }
 .name {
     font-size: 1.6rem;
-    font-weight: 600px;
+    font-weight: 600;
 }
 .check {
     margin-left: 8px;
@@ -27,5 +28,5 @@
 }
 .username {
     font-size: 1.4rem;
-    color: rgb(22, 24, 35, 0.5);
+    color: rgba(22, 24, 35, 0.5);
 }
