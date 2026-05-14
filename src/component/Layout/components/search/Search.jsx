@@ -4,6 +4,9 @@ import AccountItem from '../../../AccountItem';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
+
+import * as searchServices from '../../../../apiServices/searchServices';
+import { useDebounce } from '../../../../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleXmark,
@@ -18,26 +21,26 @@ export default function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    const deBounce = useDebounce(searchValue, 500);
+
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!deBounce.trim()) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setSearchResult([]);
             return;
         }
-        setLoading(true);
-        fetch(
-            `https://jsonplaceholder.typicode.com/users?q=${encodeURIComponent(searchValue)}&type=less`,
-        )
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    }, [searchValue]);
+
+        const fetchApi = async () => {
+            setLoading(true);
+            const result = await searchServices.search(deBounce);
+            setSearchResult(result);
+            setLoading(false);
+        };
+        fetchApi();
+    }, [deBounce]);
+
     // handle logic
     const handleHideResult = () => {
         setShowResult(false);
