@@ -13,6 +13,9 @@ import {
     faSignOut,
 } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-regular-svg-icons';
+import { Link } from 'react-router-dom';
+import routesConfig from '../../../../config/routes';
+
 import Button from '../../../Button';
 import styles from './Header.module.scss';
 import Logo from '../../../../assets/Logo';
@@ -44,8 +47,14 @@ const MENU_ITEMS = [
                                 children: {
                                     title: 'Language',
                                     data: [
-                                        { code: 'en', title: 'English3' },
-                                        { code: 'vi', title: 'Tiếng Việt3' },
+                                        {
+                                            code: 'en',
+                                            title: 'English3',
+                                        },
+                                        {
+                                            code: 'vi',
+                                            title: 'Tiếng Việt3',
+                                        },
                                         {
                                             code: 'japanese',
                                             title: 'Japanese3',
@@ -53,8 +62,14 @@ const MENU_ITEMS = [
                                     ],
                                 },
                             },
-                            { code: 'vi', title: 'Tiếng Việt2' },
-                            { code: 'japanese', title: 'Japanese2' },
+                            {
+                                code: 'vi',
+                                title: 'Tiếng Việt2',
+                            },
+                            {
+                                code: 'japanese',
+                                title: 'Japanese2',
+                            },
                         ],
                     },
                 },
@@ -108,9 +123,12 @@ export default function Header() {
         <>
             <header className={cx('wrapper')}>
                 <div className={cx('inner')}>
-                    <div className={cx('logo')}>
+                    <Link
+                        to={routesConfig.home}
+                        className={cx('logo')}
+                    >
                         <Logo />
-                    </div>
+                    </Link>
                     <Search />
 
                     <div className={cx('actions')}>
@@ -121,9 +139,15 @@ export default function Header() {
                                     content='Upload Video'
                                     placement='bottom'
                                 >
-                                    <button className={cx('action-btn')}>
+                                    <button
+                                        className={cx(
+                                            'action-btn',
+                                        )}
+                                    >
                                         <FontAwesomeIcon
-                                            icon={faCloudArrowDown}
+                                            icon={
+                                                faCloudArrowDown
+                                            }
                                         />
                                     </button>
                                 </Tippy>
@@ -132,35 +156,61 @@ export default function Header() {
                                     content='Messengers'
                                     placement='bottom'
                                 >
-                                    <button className={cx('action-btn')}>
-                                        <FontAwesomeIcon icon={faMessage} />
-                                        <div className={cx('notice')}>12</div>
+                                    <button
+                                        className={cx(
+                                            'action-btn',
+                                        )}
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={faMessage}
+                                        />
+                                        <div
+                                            className={cx(
+                                                'notice',
+                                            )}
+                                        >
+                                            12
+                                        </div>
                                     </button>
                                 </Tippy>
                             </>
                         ) : (
                             <>
                                 <Button text>Upload</Button>
-                                <Button primary>Log in</Button>
+                                <Button primary>
+                                    Log in
+                                </Button>
                             </>
                         )}
 
                         <Menu
-                            items={currentUser ? userMenu : MENU_ITEMS}
+                            items={
+                                currentUser
+                                    ? userMenu
+                                    : MENU_ITEMS
+                            }
                             onchange={handleMenuChange}
                         >
                             {currentUser ? (
                                 <Image
                                     ref={imageRef}
-                                    className={cx('user-avatar')}
+                                    className={cx(
+                                        'user-avatar',
+                                    )}
                                     src=''
                                     alt='Nguyen Van A'
                                 />
                             ) : (
                                 <>
-                                    <button className={cx('more-button')}>
+                                    <button
+                                        className={cx(
+                                            'more-button',
+                                        )}
+                                    >
                                         <FontAwesomeIcon
-                                            icon={faEllipsisVertical}
+                                            icon={
+                                                faEllipsisVertical
+                                            }
                                         ></FontAwesomeIcon>
                                     </button>
                                 </>

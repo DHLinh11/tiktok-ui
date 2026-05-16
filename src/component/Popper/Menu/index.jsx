@@ -8,7 +8,7 @@ import HeaderMenu from './Header';
 import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
-export default function Menu({ children, items = [], onchange }) {
+export default function Menu({ children, items = [], hideOnClick = false, onchange }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -36,6 +36,7 @@ export default function Menu({ children, items = [], onchange }) {
             delay={[0, 700]}
             offset={[12, 8]}
             appendTo={document.body}
+            hideOnClick={hideOnClick}
             placement='bottom-end'
             render={(attrs) => (
                 <div
@@ -48,9 +49,7 @@ export default function Menu({ children, items = [], onchange }) {
                             <HeaderMenu
                                 title='Language'
                                 onBack={() => {
-                                    setHistory((prev) =>
-                                        prev.slice(0, prev.length - 1),
-                                    );
+                                    setHistory((prev) => prev.slice(0, prev.length - 1));
                                 }}
                             ></HeaderMenu>
                         )}

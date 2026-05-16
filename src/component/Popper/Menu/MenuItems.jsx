@@ -5,7 +5,9 @@ import styles from './Menu.module.scss';
 const cx = classNames.bind(styles);
 
 export default function MenuItems({ data, onClick }) {
-    const classes = cx('menu-item', { separate: data.separate });
+    const classes = cx('menu-item', {
+        separate: data.separate,
+    });
     return (
         <>
             <Button

@@ -34,7 +34,8 @@ export default function Search() {
 
         const fetchApi = async () => {
             setLoading(true);
-            const result = await searchServices.search(deBounce);
+            const result =
+                await searchServices.search(deBounce);
             setSearchResult(result);
             setLoading(false);
         };
@@ -45,12 +46,22 @@ export default function Search() {
     const handleHideResult = () => {
         setShowResult(false);
     };
+
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
     return (
         <>
             <HeadlessTippy
                 interactive
                 appendTo={document.body}
-                visible={showResult && searchResult.length > 0}
+                visible={
+                    showResult && searchResult.length > 0
+                }
                 render={(attrs) => (
                     <div
                         className={cx('search-result')}
@@ -58,7 +69,13 @@ export default function Search() {
                         {...attrs}
                     >
                         <PopperWrapper>
-                            <h4 className={cx('search-title')}>Accounts</h4>
+                            <h4
+                                className={cx(
+                                    'search-title',
+                                )}
+                            >
+                                Accounts
+                            </h4>
                             {searchResult.map((result) => (
                                 <AccountItem
                                     key={result.id}
@@ -77,9 +94,7 @@ export default function Search() {
                             value={searchValue}
                             type='text'
                             placeholder='Search account and videos'
-                            onChange={(e) => {
-                                setSearchValue(e.target.value);
-                            }}
+                            onChange={handleChange}
                             onFocus={() => {
                                 setShowResult(true);
                             }}
@@ -92,7 +107,9 @@ export default function Search() {
                                     inputRef.current.focus();
                                 }}
                             >
-                                <FontAwesomeIcon icon={faCircleXmark} />
+                                <FontAwesomeIcon
+                                    icon={faCircleXmark}
+                                />
                             </button>
                         )}
 
@@ -103,8 +120,15 @@ export default function Search() {
                             />
                         )}
 
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        <button
+                            className={cx('search-btn')}
+                            onMouseDown={(e) => {
+                                e.preventDefault();
+                            }}
+                        >
+                            <FontAwesomeIcon
+                                icon={faMagnifyingGlass}
+                            />
                         </button>
                     </div>
                 </span>
