@@ -1,13 +1,13 @@
 // import
 import { useEffect, useRef, useState } from 'react';
-import { Wrapper as PopperWrapper } from '../../../Popper';
-import AccountItem from '../../../AccountItem';
+import { Wrapper as PopperWrapper } from '../../../component/Popper';
+import AccountItem from '../../../component/AccountItem';
 import HeadlessTippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 
-import * as searchServices from '../../../../apiServices/searchServices';
-import { useDebounce } from '../../../../hooks';
+import * as searchServices from '../../../services/searchService';
+import { useDebounce } from '../../../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
