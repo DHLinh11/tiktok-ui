@@ -1,3 +1,4 @@
+// import
 import { useEffect, useRef, useState } from 'react';
 import { Wrapper as PopperWrapper } from '../../../Popper';
 import AccountItem from '../../../AccountItem';
@@ -8,11 +9,9 @@ import styles from './Search.module.scss';
 import * as searchServices from '../../../../apiServices/searchServices';
 import { useDebounce } from '../../../../hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faCircleXmark,
-    faMagnifyingGlass,
-    faSpinner,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+
+//content
 
 const cx = classNames.bind(styles);
 export default function Search() {
@@ -34,8 +33,7 @@ export default function Search() {
 
         const fetchApi = async () => {
             setLoading(true);
-            const result =
-                await searchServices.search(deBounce);
+            const result = await searchServices.search(deBounce);
             setSearchResult(result);
             setLoading(false);
         };
@@ -55,13 +53,10 @@ export default function Search() {
     };
 
     return (
-        <>
+        <div>
             <HeadlessTippy
                 interactive
-                appendTo={document.body}
-                visible={
-                    showResult && searchResult.length > 0
-                }
+                visible={showResult && searchResult.length > 0}
                 render={(attrs) => (
                     <div
                         className={cx('search-result')}
@@ -69,13 +64,7 @@ export default function Search() {
                         {...attrs}
                     >
                         <PopperWrapper>
-                            <h4
-                                className={cx(
-                                    'search-title',
-                                )}
-                            >
-                                Accounts
-                            </h4>
+                            <h4 className={cx('search-title')}>Accounts</h4>
                             {searchResult.map((result) => (
                                 <AccountItem
                                     key={result.id}
@@ -107,9 +96,7 @@ export default function Search() {
                                     inputRef.current.focus();
                                 }}
                             >
-                                <FontAwesomeIcon
-                                    icon={faCircleXmark}
-                                />
+                                <FontAwesomeIcon icon={faCircleXmark} />
                             </button>
                         )}
 
@@ -126,13 +113,11 @@ export default function Search() {
                                 e.preventDefault();
                             }}
                         >
-                            <FontAwesomeIcon
-                                icon={faMagnifyingGlass}
-                            />
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
                 </span>
             </HeadlessTippy>
-        </>
+        </div>
     );
 }

@@ -129,6 +129,8 @@ export default function Header() {
                     >
                         <Logo />
                     </Link>
+
+                    {/* Search */}
                     <Search />
 
                     <div className={cx('actions')}>
@@ -139,79 +141,44 @@ export default function Header() {
                                     content='Upload Video'
                                     placement='bottom'
                                 >
-                                    <button
-                                        className={cx(
-                                            'action-btn',
-                                        )}
-                                    >
-                                        <FontAwesomeIcon
-                                            icon={
-                                                faCloudArrowDown
-                                            }
-                                        />
+                                    <button className={cx('action-btn')}>
+                                        <FontAwesomeIcon icon={faCloudArrowDown} />
                                     </button>
                                 </Tippy>
+
                                 <Tippy
                                     delay={[0, 200]}
                                     content='Messengers'
                                     placement='bottom'
                                 >
-                                    <button
-                                        className={cx(
-                                            'action-btn',
-                                        )}
-                                    >
-                                        <FontAwesomeIcon
-                                            icon={faMessage}
-                                        />
-                                        <div
-                                            className={cx(
-                                                'notice',
-                                            )}
-                                        >
-                                            12
-                                        </div>
+                                    <button className={cx('action-btn')}>
+                                        <FontAwesomeIcon icon={faMessage} />
+                                        <div className={cx('notice')}>12</div>
                                     </button>
                                 </Tippy>
                             </>
                         ) : (
                             <>
                                 <Button text>Upload</Button>
-                                <Button primary>
-                                    Log in
-                                </Button>
+                                <Button primary>Log in</Button>
                             </>
                         )}
 
                         <Menu
-                            items={
-                                currentUser
-                                    ? userMenu
-                                    : MENU_ITEMS
-                            }
+                            items={currentUser ? userMenu : MENU_ITEMS}
                             onchange={handleMenuChange}
                         >
                             {currentUser ? (
                                 <Image
                                     ref={imageRef}
-                                    className={cx(
-                                        'user-avatar',
-                                    )}
+                                    className={cx('user-avatar')}
                                     src=''
                                     alt='Nguyen Van A'
                                 />
                             ) : (
                                 <>
-                                    <button
-                                        className={cx(
-                                            'more-button',
-                                        )}
-                                    >
-                                        <FontAwesomeIcon
-                                            icon={
-                                                faEllipsisVertical
-                                            }
-                                        ></FontAwesomeIcon>
+                                    <button className={cx('more-button')}>
+                                        <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
                                     </button>
                                 </>
                             )}
