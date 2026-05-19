@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import classNames from 'classnames';
 import image from '../../assets/Image';
@@ -21,3 +22,8 @@ export default function Image({ ref, src, alt, className, ...props }) {
         </>
     );
 }
+Image.propTypes = {
+    src: PropTypes.string,
+    alt: PropTypes.string,
+    className: PropTypes.string,
+};
